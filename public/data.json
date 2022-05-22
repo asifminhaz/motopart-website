@@ -1,0 +1,74 @@
+[
+          {
+            "name": "Bias Belted Tyre",
+            "discription": " the outer part of motorcycle wheels, attached to the rims, providing traction, resisting wear, absorbing surface irregularities, and allowing the motorcycle to turn via countersteering.",
+            "minimumorderquantity": "50",
+            "image": "https://cdn.pixabay.com/photo/2020/05/31/11/39/motorcycle-5242358_960_720.jpg",
+            "availablequantity": "150",
+            "price": "89$"
+          },
+          {
+            "name": "Engine",
+            "discription": "In a motorbike the main part is engine .if your engine is fresh your bike is safe.we manufacture the best engine for bikes.",
+            "minimumorderquantity": "100",
+            "image": "https://cdn.pixabay.com/photo/2017/11/27/16/32/harley-davidson-2981667_960_720.jpg",
+            "availablequantity": "160",
+            "price": "59$"
+          },
+          {
+            "name": "Speedometer",
+            "discription": "It displays the speed and mileage of the vehicle. Using a speedometer can help prevent motorcycle accidents.",
+            "minimumorderquantity": "120",
+            "image": "https://cdn.pixabay.com/photo/2018/04/19/20/18/motorbike-harley-davidson-3334177_960_720.jpg",
+            "availablequantity": 300,
+            "price": "49$"
+          },
+          {
+            "name": "sprocket and chain",
+            "discription": "the best sprocket and chain for your bike is here. we have some hight quality chain for you . ",
+            "minimumorderquantity": "150",
+            "image": "https://images.unsplash.com/photo-1525207106105-b340f7384b30?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387",
+            "availablequantity": "500",
+            "price": "45$"
+          },
+          {
+            "name": " Abs Helmet",
+            "discription": "super abs top quality high hardness safety.Its personality for fashion",
+            "minimumorderquantity": "110",
+            "image": "https://images.unsplash.com/photo-1551281306-0d52288970ad?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387",
+            "availablequantity": 500,
+            "price": "79$"
+          },
+          {
+            "name": "Hand Gloves",
+            "discription": "We have fancy gloves for bikes.various type of design",
+            "minimumorderquantity": "50",
+            "image": "https://images.unsplash.com/photo-1642850470069-769d2dcc85f8?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387",
+            "availablequantity": "300",
+            "price": "66$"
+          },
+          {
+            "name": "Fog Lights", 
+            "discription": "this one is high resulation lights for your bike. very handy to use.",
+            "minimumorderquantity": "60",
+            "image": "https://cdn.pixabay.com/photo/2019/05/29/08/40/chrome-4236961_960_720.jpg",
+            "availablequantity": "300",
+            "price": "59$"
+          },
+          {
+            "name": "Looking glass",
+            "discription": "In your bike a good looking glass is very important for riding bike on the road.we have some gorgeous looking glass ",
+            "minimumorderquantity": "100",
+            "image": "https://images.unsplash.com/photo-1603465833928-9b36fca19f5f?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871",
+            "availablequantity": "400",
+            "price": "30$"
+          },
+          {
+            "name": "Gas tank",
+            "discription": "we manufacture various brands gas tank you can easily choose for you and modify your bike.",
+            "minimumorderquantity": "40",
+            "image": "https://images.unsplash.com/photo-1568636636350-c4a2044ef92d?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870",
+            "availablequantity": "100",
+            "price": "$100"
+          }
+        ]
