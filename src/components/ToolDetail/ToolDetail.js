@@ -24,9 +24,9 @@ const ToolDetail = () => {
   <div class="card-body items-center text-center">
     <h2 class="card-title">{tool.name}</h2>
     <p>{tool.discription}</p>
-    <p>price:${tool.price}</p>
-    <p>Minimum Order:{tool.minimumorderquantity}</p>
-    <p>Available Quantity:{tool.availablequantity}</p>
+    <p className='font-bold'>price:${tool.price}</p>
+    <p className='font-bold'>Minimum Order:{tool.minimumorderquantity}</p>
+    <p className='font-bold'>Available Quantity:{tool.availablequantity}</p>
   </div>
 </div>
       <div class="card-body">
