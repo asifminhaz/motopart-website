@@ -17,12 +17,16 @@ const Register = () => {
           const navigateLogin = event => {
                     navigate('/login')
           }
+          if(user){
+                    navigate('/home')
+          }
           const handleRegister = event => {
                     event.preventDefault();
                     const name = nameRef.current.value;
                     const email = emailRef.current.value;
                     const password = passwordRef.current.value;
                     
+                    createUserWithEmailAndPassword(email, password)
           }
           const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
           return (
