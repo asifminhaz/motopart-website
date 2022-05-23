@@ -1,19 +1,25 @@
 import React, { useRef } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from './Loading';
 
 const Login = () => {
 
           const emailRef = useRef('')
           const passwordRef = useRef('')
           const navigate = useNavigate()
+          const location = useLocation()
+          let from = location.state?.from?.pathname || "/"
           const [
                     signInWithEmailAndPassword,
                     user,
                     loading,
                     error,
                   ] = useSignInWithEmailAndPassword(auth);
+                  let singInError;
+
+                  
           const handleSubmit = event => {
                     event.preventDefault();
                     const email = emailRef.current.value;
@@ -23,7 +29,13 @@ const Login = () => {
           const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
           if (user || gUser) {
-                  navigate('/home')
+                  navigate(from, { replace:true})
+          }
+          if(loading ){
+                    <Loading></Loading>
+          }
+          if(error || gError){
+                   singInError = <p className='text-error'><small>{error?.message || gError?.message }</small></p>
           }
 
           const navigateRegister = event => {
@@ -45,6 +57,7 @@ const Login = () => {
                                      <div className="form-control">
                                       <label className="label">
                                      <span className="label-text">Password</span>
+                                     {singInError}
                                       </label>
                                        <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" required />
                                          <label className="label">
