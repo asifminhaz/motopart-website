@@ -5,6 +5,7 @@ import Blogs from './components/Blogs/Blogs';
 import Contact from './components/Contact/Contact';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
+import Register from './components/Login/Register';
 import Purchase from './components/Purchase/Purchase';
 import Navbar from './components/Shared/Navbar';
 
@@ -18,6 +19,7 @@ function App() {
    <Route path='/purchase' element={<Purchase></Purchase>}></Route>
    <Route path='/blogs' element={<Blogs></Blogs>}></Route>
    <Route path='/login' element={<Login></Login>}></Route>
+   <Route path='/register' element={<Register></Register>}></Route>
    <Route path='/contact' element={<Contact></Contact>}></Route>
  </Routes>
     </div>
