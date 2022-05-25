@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../Hooks/useToken';
 
 const Register = () => {
           const [
@@ -10,6 +11,7 @@ const Register = () => {
                     loading,
                     error,
                   ] = useCreateUserWithEmailAndPassword(auth);
+                  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
           const navigate = useNavigate()
           const nameRef = useRef('')
           const emailRef = useRef('')
@@ -17,7 +19,13 @@ const Register = () => {
           const navigateLogin = event => {
                     navigate('/login')
           }
-          if(user){
+          const [token] = useToken(user || gUser)
+          if(user || gUser){
+                    navigate('/home')
+                    console.log(user || gUser)
+          }
+
+          if(token){
                     navigate('/home')
           }
           const handleRegister = event => {
@@ -28,7 +36,7 @@ const Register = () => {
                     
                     createUserWithEmailAndPassword(email, password)
           }
-          const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+         
           return (
                     <div>
                               <h3 className='text-center text-4xl font-bold m-10'>Please Register</h3>

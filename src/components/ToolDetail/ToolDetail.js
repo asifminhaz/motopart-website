@@ -1,16 +1,54 @@
+
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+// import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import auth from '../../firebase.init';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ToolDetail = () => {
           const {toolId} = useParams()
-          const [tool, setTools] = useState({})
-
+          const [tool, setTools] = useState([])
+          const [user] = useAuthState(auth)
+          const [isDisabled, setDisabled] = useState(false);
+          const { image, name, minimumorderquantity, availablequantity, price, } = tool;
           useEffect(() => {
                     const url = `http://localhost:5000/tool/${toolId}`
                     fetch(url)
                     .then(res => res.json())
                     .then(data => setTools(data))
           },[])
+          const handleOrder = event => {
+                    event.preventDefault()
+                  const userName = event.target.userName.value
+                    // const productsName = event.target.productsName.value
+                    const email = event.target.email.value
+                    const quantity = event.target.quantity.value
+                    if (quantity < minimumorderquantity || quantity > availablequantity) {
+                         setDisabled(true)
+                        toast.error('please order lower than available quantity')
+                        
+                    }
+                    const totalCost = quantity * price
+                    const address = event.target.address.value
+                    const orderData = {userName,  email, quantity, address, price: totalCost }
+            
+                    fetch('http://localhost:5000/orders', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(orderData)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            
+                            if (data.insertedId) {
+                                event.target.reset()
+                                toast.success("Purchase  Successfully")
+                            }
+                        })
+                }
           return (
                     <div>
                          <h3 className='text-2xl text-center'>welcome to tool details</h3>  
@@ -24,33 +62,48 @@ const ToolDetail = () => {
   <div class="card-body items-center text-center">
     <h2 class="card-title">{tool.name}</h2>
     <p>{tool.discription}</p>
-    <p className='font-bold'>price:${tool.price}</p>
+    <p className='font-bold'>price:${tool?.price}</p>
     <p className='font-bold'>Minimum Order:{tool.minimumorderquantity}</p>
     <p className='font-bold'>Available Quantity:{tool.availablequantity}</p>
   </div>
 </div>
       <div class="card-body">
+                <form onSubmit={handleOrder}>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Name</span>
+          </label>
+          <input value={user?.user?.displayName} name='userName' type="text" placeholder="your Name" class="input input-bordered" />
+        </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Email</span>
           </label>
-          <input type="text" placeholder="email" class="input input-bordered" />
+          <input value={user?.email}  name='email' type="text" placeholder="email" class="input input-bordered" readOnly/>
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Phone</span>
           </label>
-          <input type="text" placeholder="Phone number" class="input input-bordered" />
+          <input type="text" name='phone' placeholder="Phone number" class="input input-bordered" />
         </div>
         <div class="form-control">
           <label class="label">
-            <span class="label-text">Order</span>
+            <span class="label-text">address</span>
           </label>
-          <input type="number" placeholder="Minimum order" class="input input-bordered" />
+          <input type="text" name='address' placeholder="address" class="input input-bordered" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">quantity</span>
+          </label>
+          <input defaultValue={minimumorderquantity} name='quantity' type="number" placeholder="" class="input input-bordered" />
         </div>
         <div class="form-control mt-6">
-          <button class="btn btn-primary">Purchase</button>
+          <button  disabled={isDisabled}  type='submit' value="place a order" class="btn btn-primary">Purchase</button>
         </div>
+        <Toaster />
+        </form>
       </div>
 
      
@@ -58,7 +111,9 @@ const ToolDetail = () => {
   </div>
 </div>   
                     </div>
+                    
           );
+                
 };
 
 export default ToolDetail;

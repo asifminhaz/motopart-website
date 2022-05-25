@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import useToken from '../../Hooks/useToken';
 import Loading from './Loading';
 
 const Login = () => {
@@ -10,6 +12,7 @@ const Login = () => {
           const passwordRef = useRef('')
           const navigate = useNavigate()
           const location = useLocation()
+          const [ pUser] = useAuthState(auth)
           let from = location.state?.from?.pathname || "/"
           const [
                     signInWithEmailAndPassword,
@@ -17,6 +20,10 @@ const Login = () => {
                     loading,
                     error,
                   ] = useSignInWithEmailAndPassword(auth);
+                  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+                  const [token] = useToken(user || gUser)
+
+                 
                   let singInError;
 
                   
@@ -26,12 +33,17 @@ const Login = () => {
                     const password = passwordRef.current.value;
                     signInWithEmailAndPassword(email, password)
           }
-          const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-
-          if (user || gUser) {
-                  navigate(from, { replace:true})
+          if(loading || gLoading){
+                    return <Loading></Loading>
           }
-          if(loading ){
+         
+          if (pUser || token) {
+                    console.log(token)
+      navigate(from, { replace:true})
+
+         
+          }
+          if(loading || gLoading ){
                     <Loading></Loading>
           }
           if(error || gError){
@@ -57,12 +69,13 @@ const Login = () => {
                                      <div className="form-control">
                                       <label className="label">
                                      <span className="label-text">Password</span>
-                                     {singInError}
+                                     
                                       </label>
                                        <input ref={passwordRef} type="password" placeholder="password" className="input input-bordered" required />
                                          <label className="label">
                                               <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                              </label>
+                                             {singInError}
                                             </div>
                                           <div className="form-control mt-6">
                                       <button className="btn btn-primary">Login</button>
