@@ -12,6 +12,7 @@ const ToolDetail = () => {
           const [user] = useAuthState(auth)
           const [isDisabled, setDisabled] = useState(false);
           const { image, name, minimumorderquantity, availablequantity, price, } = tool;
+          
           useEffect(() => {
                     const url = `http://localhost:5000/tool/${toolId}`
                     fetch(url)
@@ -24,14 +25,15 @@ const ToolDetail = () => {
                     // const productsName = event.target.productsName.value
                     const email = event.target.email.value
                     const quantity = event.target.quantity.value
-                    if (quantity < minimumorderquantity || quantity > availablequantity) {
+              if (quantity < minimumorderquantity || quantity > availablequantity) {
                          setDisabled(true)
                         toast.error('please order lower than available quantity')
                         
                     }
-                    const totalCost = quantity * price
+                    const totalCost = parseInt(quantity * price) 
+                    
                     const address = event.target.address.value
-                    const orderData = {userName,  email, quantity, address, price: totalCost }
+                    const orderData = {userName,  email, quantity, address, totalCost }
             
                     fetch('http://localhost:5000/orders', {
                         method: 'POST',
