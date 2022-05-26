@@ -4,8 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import useToken from '../../Hooks/useToken';
-import Loading from './Loading';
-
+import Loading from '../Shared/Loading';
 const Login = () => {
 
           const emailRef = useRef('')
@@ -33,9 +32,7 @@ const Login = () => {
                     const password = passwordRef.current.value;
                     signInWithEmailAndPassword(email, password)
           }
-          if(loading || gLoading){
-                    return <Loading></Loading>
-          }
+      
          
           if (pUser || token) {
                     console.log(token)

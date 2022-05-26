@@ -3,6 +3,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-fi
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useToken from '../../Hooks/useToken';
+import Loading from '../Shared/Loading';
 
 const Register = () => {
           const [
@@ -23,6 +24,9 @@ const Register = () => {
           if(user || gUser){
                     navigate('/home')
                     console.log(user || gUser)
+          }
+          if(loading || gLoading){
+            return <Loading></Loading>
           }
 
           if(token){
