@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Tool = ({ tool }) => {
           const { _id, image, discription, price, name, availablequantity, minimumorderquantity } = tool
+          console.log(tool)
           const navigate = useNavigate()
+          // const [product, setProduct] = useState([])
           const navigateToToolDetail = _id => {
           navigate(`/tool/${_id}`)
 
           }
+
+          // add product api
+          // fetch('http://localhost:5000/product', {
+          //           method: 'POST',
+          //           headers: {
+          //               'content-type': 'application/json',
+          //               authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          //           },
+          //           body: JSON.stringify(product)
+          //       })
+          //       .then(res =>res.json())
+          //       .then(data => setProduct(data) )
           return (
                     <div className="card w-96 bg-base-100 shadow-xl">
                               <figure className="px-10 pt-10">

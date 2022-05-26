@@ -5,8 +5,17 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import toast, { Toaster } from 'react-hot-toast';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 
 const ToolDetail = () => {
+  // const {data: products, isLoading} = useQuery('products', () => fetch('http://localhost:5000/product', {
+  //   headers: {
+  //     authorization: `Bearer ${localStorage.getItem('accessToken')}`
+  //   }
+  // }).then(res => res.json()))
+
+  
           const {toolId} = useParams()
           const [tool, setTools] = useState([])
           const [user] = useAuthState(auth)
@@ -51,6 +60,9 @@ const ToolDetail = () => {
                             }
                         })
                 }
+                // if(isLoading){
+                //   return <Loading></Loading>
+                // }
           return (
                     <div>
                          <h3 className='text-2xl text-center'>welcome to tool details</h3>  

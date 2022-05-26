@@ -29,8 +29,8 @@ const AddProducts = () => {
                             email: data.email,
                             discription: data.discription,
                             price: data.price,
-                            minimumOrder : data.minimumOrder,
-                            available: data.availableQuantity,
+                            minimumorderquantity: data.minimumOrder,
+                            availablequantity: data.availableQuantity,
                             img: img
                         }
                         
@@ -162,7 +162,7 @@ const AddProducts = () => {
         type="number"
         placeholder="write minimum order Quantity"
         className="input input-bordered w-full max-w-xs"
-        {...register("minimumOrder", {
+        {...register("minimumorderquantity", {
             required: {
                 value: true,
                 message: 'minimum order quantity is required'
@@ -180,7 +180,7 @@ const AddProducts = () => {
     </label>
     <input
         type="number"
-        placeholder="availableQuantity"
+        placeholder="availablequantity"
         className="input input-bordered w-full max-w-xs"
         {...register("number", {
             required: {

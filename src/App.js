@@ -14,6 +14,7 @@ import Login from './components/Login/Login';
 import Register from './components/Login/Register';
 import RequireAuth from './components/Login/RequireAuth';
 import Purchase from './components/Purchase/Purchase';
+import Footer from './components/Shared/Footer';
 import Navbar from './components/Shared/Navbar';
 import ToolDetail from './components/ToolDetail/ToolDetail';
 
@@ -43,6 +44,7 @@ function App() {
    <Route path='/register' element={<Register></Register>}></Route>
    <Route path='/contact' element={<Contact></Contact>}></Route>
  </Routes>
+ <Footer></Footer>
     </div>
   );
 }
