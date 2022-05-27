@@ -45,16 +45,7 @@ const Review = () => {
                                   console.log(data)
                               })
                               reset()
-
-
                       }
-
-                    
-
-
-
-
-
           return (
                     <div>
                               <h2>add a review</h2>
@@ -73,7 +64,7 @@ const Review = () => {
                 message: 'Name is Required'
             }
         })}
-    />
+   required />
     <label className="label">
         {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
     </label>
@@ -97,7 +88,7 @@ const Review = () => {
                 message: 'Provide a valid Email'
             }
         })}
-    />
+   required />
     <label className="label">
         {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
         {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
@@ -118,7 +109,7 @@ const Review = () => {
                 message: 'discription is required'
             },
         })}
-    />
+   required />
   
 </div>
 <div className="form-control w-full max-w-xs">
@@ -135,18 +126,12 @@ const Review = () => {
                 message: 'ratings is required'
             },
         })}
-    />
+   required />
   
 </div>
 <input className='btn w-full max-w-xs text-white' type="submit" value="add" />
 </form>
-{/* {
-reviews.map(review => <ShowReview
-key={review._id}
-review={review}
-></ShowReview>)
-} */}
-                    </div>
+ </div>
           );
 };
 
