@@ -70,7 +70,7 @@ const Register = () => {
                                             </div>
                                           <div className="form-control mt-6">
                                       <button className="btn btn-primary">Register</button>
-                                      <p>New to MotoParts?<Link to='/login' className='text-error ' onClick={navigateLogin}>Please Register!!</Link></p>
+                                      <p>already have an account?<Link to='/login' className='text-error ' onClick={navigateLogin}>Please Login!!</Link></p>
                                               <div className="divider">OR</div>
                                              <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-info">Continue with google</button>
                                            </div>

@@ -7,12 +7,12 @@ const Tool = ({ tool }) => {
           const navigate = useNavigate()
           // const [product, setProduct] = useState([])
           const navigateToToolDetail = _id => {
-          navigate(`/tool/${_id}`)
+                    navigate(`/tool/${_id}`)
 
           }
 
           // add product api
-          // fetch('http://localhost:5000/product', {
+          // fetch('https://young-badlands-79031.herokuapp.com/product', {
           //           method: 'POST',
           //           headers: {
           //               'content-type': 'application/json',
@@ -34,7 +34,7 @@ const Tool = ({ tool }) => {
                                         <p className='font-bold'>Minimum Order: {minimumorderquantity}</p>
                                         <p className='font-bold'>Price:{price}</p>
                                         <div className="card-actions">
-                                                  <button onClick={() => navigateToToolDetail (_id)} className="btn btn-primary">Purchase</button>
+                                                  <button onClick={() => navigateToToolDetail(_id)} className="btn btn-primary">Purchase</button>
                                         </div>
                               </div>
                     </div>

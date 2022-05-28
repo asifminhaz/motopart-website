@@ -30,9 +30,9 @@ const MyPortfolio = () => {
 <p className='font-bold'></p>
 
 </div>
-
+{/* 
 <div>My Three website Link Below</div>
-<a href="https://playful-gingersnap-b0bba4.netlify.app/">Earphone hunter</a>
+<a href="https://playful-gingersnap-b0bba4.netlify.app/">Earphone hunter</a> */}
 
 </div>
                                  </div>
