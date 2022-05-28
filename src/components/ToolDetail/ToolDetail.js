@@ -19,31 +19,27 @@ const ToolDetail = () => {
           const {toolId} = useParams()
           const [tool, setTools] = useState([])
           const [user] = useAuthState(auth)
-          const [isDisabled, setDisabled] = useState(true);
+          const [isDisabled, setDisabled] = useState(false);
           const { image, name, minimumorderquantity, availablequantity, price, } = tool;
 
 
-          const handleButton = event => {
-            const quantityInput = event.target.value
-            const minimumOrderquantity = 50
-            const availablequantity = parseInt(tool.availablequantity) 
-            if(quantityInput < minimumOrderquantity){
-              setDisabled(true)
-            }
-            else if( quantityInput > availablequantity){
+          // const handleButton = event => {
+          //   const quantityInput = event.target.value
+          //   const minimumOrderquantity = 50
+          //   const availablequantity = parseInt(tool.availablequantity) 
+          //   if(quantityInput < minimumOrderquantity){
+          //     setDisabled(true)
+          //   }
+          //   else if( quantityInput > availablequantity){
 
-              setDisabled(true)
-            }
-            else {
-              setDisabled(false)
-            }
+          //     setDisabled(true)
+          //   }
+          //   else {
+          //     setDisabled(false)
+          //   }
              
-            
-            
-
-
-            console.log(quantityInput)
-          }
+          //   console.log(quantityInput)
+          // }
           
           useEffect(() => {
                     const url = `http://localhost:5000/tool/${toolId}`
@@ -51,10 +47,8 @@ const ToolDetail = () => {
                     .then(res => res.json())
                     .then(data => setTools(data))
           },[])
-          const handleOrder = (data,event) => {
-          
-
-                    event.preventDefault()
+          const handleOrder = event => {
+                event.preventDefault()
 
                   const userName = event.target.userName.value
                     // const productsName = event.target.productsName.value
@@ -63,14 +57,14 @@ const ToolDetail = () => {
               if ( minimumorderquantity <  quantity ) {
                          setDisabled(true)
                         toast.error('please order lower than available quantity')  
-                        return                    
+                                     
                     }
                
                     const totalCost = parseInt(quantity * price)    
                     const address = event.target.address.value
                     const orderData = {userName,  email, quantity, address, totalCost }
             
-                    fetch('http://localhost:5000/order', {
+                    fetch('http://localhost:5000/orders', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -137,7 +131,7 @@ const ToolDetail = () => {
           <label class="label">
             <span class="label-text">quantity</span>
           </label>
-          <input onKeyUp={handleButton}  name='quantity' type="number" placeholder="" class="input input-bordered" required/>
+          <input   name='quantity' type="number" placeholder="" class="input input-bordered" required/>
         </div>
         <div class="form-control mt-6">
           <button  disabled={isDisabled}  type='submit' value="place a order" class="btn btn-primary">Purchase</button>

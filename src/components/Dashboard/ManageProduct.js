@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Tool from '../Home/Tool';
+import DeleteConfirmModal from './DeleteConfirmModal';
 import Product from './Product';
 
 const ManageProduct = () => {
           const [tools, setTools] = useState([])
+          const [deletingProduct, setDeletingProduct] = useState(null);
 
           useEffect(  () => {
                     fetch(`http://localhost:5000/tool` , {
@@ -42,13 +44,20 @@ const ManageProduct = () => {
   </thead>
   <tbody>
   {
-            tools.map(tool => <Product
+            tools.map((tool, index) => <Product
+            index={index}
             key={tool._id}
+            setDeletingProduct={setDeletingProduct}
             tool={tool}
             ></Product>)
   }
   </tbody>
 </table>
+{deletingProduct && <DeleteConfirmModal
+                deletingProduct={deletingProduct}
+               
+                setDeletingProduct={setDeletingProduct}
+            ></DeleteConfirmModal>}
 </div>
                     </div>
           );

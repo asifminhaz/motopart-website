@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import DeletingUser from './DeletingUser';
 import UserRow from './UserRow';
 
-
-
-
 const User = () => {
+   
      const {data: users, isLoading , refetch} = useQuery('users', () => fetch('http://localhost:5000/user', {
           method: 'GET',
           headers: {
@@ -36,12 +35,15 @@ return  <Loading></Loading>
           users.map(user => <UserRow
           key={user._id}
           user={user}
+        
           refetch={refetch}
           ></UserRow>)
      }
       
     </tbody>
   </table>
+
+
 </div>
                     </div>
           );
