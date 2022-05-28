@@ -26,8 +26,8 @@ return  <Loading></Loading>
       <tr>
         <th></th>
         <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>make admin </th>
+        <th>remove</th>
       </tr>
     </thead>
     <tbody>

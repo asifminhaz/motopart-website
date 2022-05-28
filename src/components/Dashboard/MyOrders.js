@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyOrders = () => {
@@ -17,7 +17,7 @@ const navigate = useNavigate()
                   }
             })
             .then(res => {
-                  console.log('res', res)
+                  // console.log('res', res)
                   if(res.status === 401 || res.status === 403){
                         signOut(auth)
                         localStorage.removeItem('accessToken')
@@ -39,6 +39,9 @@ const navigate = useNavigate()
         <th>Name</th>
         <th>Email</th>
         <th>orders</th>
+        <th>Price</th>
+        <th>Payment</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -49,6 +52,15 @@ const navigate = useNavigate()
             <td>{o.userName}</td>
             <td>{o.email}</td>
             <td>{o._id}</td>
+            <td>{o.totalCost}</td>
+            
+            <td>
+                                    {(o.totalCost && !o.paid) && <Link to={`/dashboard/payment/${o._id}`}><button className='btn btn-xs btn-success'>pay</button></Link>}
+                                    {(o.totalCost && o.paid) && <div>
+                                        <p><span className='text-success'>Paid</span></p>
+                                        <p>Transaction id: <span className='text-success'>{o.transactionId}</span></p>
+                                    </div>}
+                                </td>
           </tr>)
      }
       

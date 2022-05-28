@@ -19,8 +19,31 @@ const ToolDetail = () => {
           const {toolId} = useParams()
           const [tool, setTools] = useState([])
           const [user] = useAuthState(auth)
-          const [isDisabled, setDisabled] = useState(false);
+          const [isDisabled, setDisabled] = useState(true);
           const { image, name, minimumorderquantity, availablequantity, price, } = tool;
+
+
+          const handleButton = event => {
+            const quantityInput = event.target.value
+            const minimumOrderquantity = 50
+            const availablequantity = parseInt(tool.availablequantity) 
+            if(quantityInput < minimumOrderquantity){
+              setDisabled(true)
+            }
+            else if( quantityInput > availablequantity){
+
+              setDisabled(true)
+            }
+            else {
+              setDisabled(false)
+            }
+             
+            
+            
+
+
+            console.log(quantityInput)
+          }
           
           useEffect(() => {
                     const url = `http://localhost:5000/tool/${toolId}`
@@ -28,23 +51,26 @@ const ToolDetail = () => {
                     .then(res => res.json())
                     .then(data => setTools(data))
           },[])
-          const handleOrder = event => {
+          const handleOrder = (data,event) => {
+          
+
                     event.preventDefault()
+
                   const userName = event.target.userName.value
                     // const productsName = event.target.productsName.value
                     const email = event.target.email.value
                     const quantity = event.target.quantity.value
-              if (quantity < minimumorderquantity || quantity > availablequantity) {
+              if ( minimumorderquantity <  quantity ) {
                          setDisabled(true)
-                        toast.error('please order lower than available quantity')
-                        
+                        toast.error('please order lower than available quantity')  
+                        return                    
                     }
-                    const totalCost = parseInt(quantity * price) 
-                    
+               
+                    const totalCost = parseInt(quantity * price)    
                     const address = event.target.address.value
                     const orderData = {userName,  email, quantity, address, totalCost }
             
-                    fetch('http://localhost:5000/orders', {
+                    fetch('http://localhost:5000/order', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
@@ -87,7 +113,7 @@ const ToolDetail = () => {
           <label class="label">
             <span class="label-text">Name</span>
           </label>
-          <input value={user?.user?.displayName} name='userName' type="text" placeholder="your Name" class="input input-bordered" />
+          <input value={user?.user?.displayName} name='userName' type="text" placeholder="your Name" class="input input-bordered" required />
         </div>
         <div class="form-control">
           <label class="label">
@@ -99,19 +125,19 @@ const ToolDetail = () => {
           <label class="label">
             <span class="label-text">Phone</span>
           </label>
-          <input type="text" name='phone' placeholder="Phone number" class="input input-bordered" />
+          <input type="text" name='phone' placeholder="Phone number" class="input input-bordered" required />
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">address</span>
           </label>
-          <input type="text" name='address' placeholder="address" class="input input-bordered" />
+          <input type="text" name='address' placeholder="address" class="input input-bordered" required />
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">quantity</span>
           </label>
-          <input defaultValue={minimumorderquantity} name='quantity' type="number" placeholder="" class="input input-bordered" />
+          <input onKeyUp={handleButton}  name='quantity' type="number" placeholder="" class="input input-bordered" required/>
         </div>
         <div class="form-control mt-6">
           <button  disabled={isDisabled}  type='submit' value="place a order" class="btn btn-primary">Purchase</button>

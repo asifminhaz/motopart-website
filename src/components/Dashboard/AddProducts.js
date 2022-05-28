@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import toast  from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 
@@ -23,25 +23,25 @@ const AddProducts = () => {
               .then(res => res.json())
               .then(result =>{
                     if(result.success){
-                        const img = result.data.url;
-                        const product = {
+                        const imgage = result.data.url;
+                        const tool = {
                             name: data.name,
                             email: data.email,
                             discription: data.discription,
                             price: data.price,
                             minimumorderquantity: data.minimumOrder,
                             availablequantity: data.availableQuantity,
-                            img: img
+                            image: image
                         }
                         
                         // send to your database 
-                        fetch('http://localhost:5000/product', {
+                        fetch('http://localhost:5000/tool', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json',
-                                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                              //   authorization: `Bearer ${localStorage.getItem('accessToken')}`
                             },
-                            body: JSON.stringify(product)
+                            body: JSON.stringify(tool)
                         })
                         .then(res =>res.json())
                         .then(inserted =>{
@@ -217,6 +217,7 @@ const AddProducts = () => {
 
 <input className='btn w-full max-w-xs text-white' type="submit" value="add" />
 </form>
+
                     </div>
           );
 };

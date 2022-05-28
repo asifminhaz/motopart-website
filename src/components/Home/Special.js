@@ -9,11 +9,11 @@ const Special = () => {
                         
                         <p class="py-6">If you faced any problem to place the order please contact us</p>
                         <h4 class=" font-bold">Call US</h4>
-                        <p class="py-6 font-extrabold">015873844590</p>
+                        <p class="py-6 font-extrabold">01850381397</p>
                         <h4 class=" font-bold">Sent Us Email.</h4>
-                        <p class="py-6 font-extrabold">minhazurrahmansif@gmail.com</p>
+                        <p class="py-6 font-extrabold">minhazurrahmansif40@gmail.com</p>
                         <h4 class=" font-bold">Meet Us At.</h4>
-                        <p class="py-6 font-extrabold">Chittagong, 4204, dhaka</p>
+                        <p class="py-6 font-extrabold">Chittagong, 4204, Bangladesh</p>
                       </div>
                       
                       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
